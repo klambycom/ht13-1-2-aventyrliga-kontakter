@@ -3,24 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using AdventurousContacts.Models;
-using AdventurousContacts.Models.DataModels;
+using AdventurousContacts.Models.Repository;
 
 namespace AdventurousContacts.Controllers
 {
     public class ContactController : Controller
     {
-        private ContactEntities _entities = new ContactEntities();
+        private IRepository _repository = new Repository();
 
         //
         // GET: /Contact/
 
         public ActionResult Index()
         {
-            var model = _entities.Contacts.ToList();
+            var model = _repository.GetLastContacts();
 
-            return View();
+            return View(model);
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            _repository.Dispose();
+            base.Dispose(disposing);
+        }
     }
 }
