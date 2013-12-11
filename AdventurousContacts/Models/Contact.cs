@@ -12,16 +12,20 @@ namespace AdventurousContacts.Models
     {
         class Contact_Metadata
         {
-            [Required(ErrorMessage = "Epostaddress måste anges.")]
-            [DisplayName("Epostaddress")]
+            [Required]
+            [EmailAddress]
+            [StringLength(50)]
+            [DisplayName("E-mail address")]
             public string EmailAddress { get; set; }
 
-            [Required(ErrorMessage = "Förnamn måste anges.")]
-            [DisplayName("Förnamn")]
+            [Required]
+            [StringLength(50)]
+            [DisplayName("First Name")]
             public string FirstName { get; set; }
 
-            [Required(ErrorMessage = "Efternamn måste anges.")]
-            [DisplayName("Efternamn")]
+            [Required]
+            [StringLength(50)]
+            [DisplayName("Last Name")]
             public string LastName { get; set; }
         }
     }

@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<AdventurousContacts.Models.Contact>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Contacts";
 }
 
-<h2>Index</h2>
+<h2>Contacts</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create new contact", "Create")
 </p>
 <table>
     <tr>
@@ -36,7 +36,6 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ContactID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ContactID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ContactID })
         </td>
     </tr>

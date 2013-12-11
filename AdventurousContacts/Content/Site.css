@@ -59,3 +59,39 @@ textarea {
 .validation-summary-valid {
     display: none;
 }
+
+h1
+{
+    font-size: 3em;
+    background-color: rgb(255, 255, 71);
+    padding: 20px;
+}
+
+#page
+{
+    width: 1000px;
+    margin: 0 auto;
+    background-color: white;
+}
+
+body
+{
+    background-color: whitesmoke;
+}
+
+#content
+{
+    padding: 0 20px;
+}
+
+th
+{
+    background-color: black;
+    color: white;
+    min-width: 100px;
+}
+
+th:nth-child(3)
+{
+   min-width: 200px;
+}

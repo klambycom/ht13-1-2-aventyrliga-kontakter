@@ -44,7 +44,7 @@ namespace AdventurousContacts.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Contact contact)
+        public ActionResult Create([Bind(Include="EmailAddress, FirstName, LastName")]Contact contact)
         {
             if (ModelState.IsValid)
             {
@@ -62,15 +62,42 @@ namespace AdventurousContacts.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            throw new NotImplementedException();
+            var contact = _repository.GetContactById(id);
+            if (contact == null)
+            {
+                return View("NotFound");
+            }
+
+            return View("Delete", contact);
         }
 
         //
         // POST: /Contact/Delete/id
 
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            throw new NotImplementedException();
+            var contact = _repository.GetContactById(id);
+
+            if (contact == null)
+            {
+                return View("NotFound");
+            }
+
+            try
+            {
+                _repository.Delete(contact);
+                _repository.Save();
+
+                return View("Deleted", contact);
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(String.Empty, "Delete was unsucessful.");
+            }
+
+            return View("Delete", contact);
         }
 
         //
@@ -105,7 +132,7 @@ namespace AdventurousContacts.Controllers
             }
             catch (Exception)
             {
-                ModelState.AddModelError(String.Empty, "Ett fel inträffade då kontakten skulle sparas.");
+                ModelState.AddModelError(String.Empty, "Create was unsuccessful. Please correct any errors and try again.");
             }
 
             return View("Edit", contact);

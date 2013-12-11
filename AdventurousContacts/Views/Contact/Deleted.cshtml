@@ -1,0 +1,11 @@
+﻿@model AdventurousContacts.Models.Contact
+
+@{
+    ViewBag.Title = "Success";
+}
+
+<h2>Success</h2>
+
+<p>@Html.DisplayFor(c => c.FirstName) @Html.DisplayFor(c => c.LastName) (@Html.DisplayFor(c => c.EmailAddress)) was successfully deleted.</p>
+
+<p>@Html.ActionLink("Back to contacts", "Index")</p>
